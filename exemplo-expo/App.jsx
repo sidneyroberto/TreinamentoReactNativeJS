@@ -1,0 +1,52 @@
+import React, { useState } from 'react'
+import { View, Text, StyleSheet, TextInput } from 'react-native'
+import Header from './components/Header'
+
+// Função JavaScript
+const App = () => {
+  // Estado OU State
+  const [numberOfWords, setNumberOfWords] = useState(0)
+
+  const countWords = (sentence) => {
+    let number = 0
+    if (sentence) {
+      number = sentence.trim().split(' ').length
+    }
+    setNumberOfWords(number)
+  }
+
+  return (
+    <View>
+      <Header title='Meu app' />
+      <View style={styles.container}>
+        <TextInput
+          placeholder='Digite uma frase'
+          onChangeText={countWords}
+          style={styles.sentenceInput}
+        />
+        <Text style={styles.result}>
+          {`Quantidade palavras: ${numberOfWords}`}
+        </Text>
+      </View>
+    </View>
+  )
+}
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+  },
+  sentenceInput: {
+    borderWidth: 2,
+    height: 40,
+    width: 300,
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  result: {
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+})
+
+export default App
